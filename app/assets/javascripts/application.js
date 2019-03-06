@@ -17,3 +17,28 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(function() {
+  var fetchRate = function() {
+    console.log('Sending AJAX request...');
+    $.ajax({
+      url: "/rates.json",
+      type: "GET",
+      contentType: 'application/json',
+
+    }).done(function(msg) {
+      console.log('success');
+      console.log(msg);
+      $('#rate').html(msg['value']);
+      $('#date').html(msg['date']);
+    }).fail(function() {
+      console.log('error');
+    }).always(function() {
+      // Schedule the next request after this one completes, even after error
+      console.log('Waiting ' + (5000 / 1000) + ' seconds');
+      setTimeout(fetchRate, 5000);
+    });
+  }
+
+  fetchRate();
+});
