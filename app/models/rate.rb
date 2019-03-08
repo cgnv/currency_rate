@@ -1,10 +1,18 @@
 class Rate
   include ActiveModel::Model
+  include Virtus.model
 
-  attr_accessor :value, :expire
+  attribute :value, Float
+  attribute :expire_at, Time
+
+  validates :value, presence: true,
+                    numericality: { greater_than_or_equal_to: 0 }
+  validates :expire_at, presence: true
 
   def self.current
-    #return value if expire > Time.now
+    rate = admin_rate
+    return rate.fake_rate if rate && rate.expire_at > Time.now
+
     official_rate
   end
 
@@ -14,12 +22,16 @@ class Rate
     rate
   end
 
-  #def initialize;  end
-
-  def to_param
+  def self.admin_rate
+    params = Rails.cache.read('admin_rate')
+    new(params) if params
   end
 
-  def persisted?
+  def fake_rate
+    { value: @value, date: Date.today }
   end
 
+  def save
+    Rails.cache.write('admin_rate', attributes) if valid?
+  end
 end

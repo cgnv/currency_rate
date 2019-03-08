@@ -1,2 +1,29 @@
-<h1>Admin::Rates#index</h1>
-<p>Find me in app/views/admin/rates/index.html.erb</p>
+<div class="container-fluid bg-light py-3">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="card card-body">
+        <h3 class="text-center mb-4">Задать курс</h3>
+
+        <%= render 'shared/flash' %>
+        <%= render 'shared/model_errors', res: @rate %>
+
+        <fieldset>
+          <%= form_for [:admin, @rate] do |f|%>
+            <div class="form-group">
+              <%= f.label :value %>
+              <%= f.number_field :value, min: 0, step: :any, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :expire_at %>
+              <%= bootstrap_datetime_picker(f, :expire_at, 'datetimepicker') %>
+            </div>
+
+            <%= f.submit class: 'btn btn-lg btn-primary btn-block' %>
+          <% end %>
+        </fieldset>
+
+      </div>
+    </div>
+  </div>
+</div>

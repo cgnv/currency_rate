@@ -32,6 +32,7 @@ class FetchRateJob < ApplicationJob
     return { wait: 1.hour } unless data
 
     rate, date = extract_rate(data)
+
     return { wait: 1.hour } unless date == Date.today
 
     Rails.cache.write('usd_rub_rate', value: rate, date: date)

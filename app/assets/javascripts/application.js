@@ -16,6 +16,9 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require moment
+//= require moment/ru
+//= require tempusdominus-bootstrap-4
 //= require_tree .
 
 $(function() {

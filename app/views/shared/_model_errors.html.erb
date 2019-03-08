@@ -1,0 +1,13 @@
+<% if res.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <a class="close font-weight-light" data-dismiss="alert" href="#">&times;</a>
+    <h2><%= I18n.t("errors.template.header",
+                   count: res.errors.count,
+                   model: res.model_name.human) %></h2>
+    <ul>
+      <% res.errors.full_messages.each do |msg| %>
+        <li><%= msg %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

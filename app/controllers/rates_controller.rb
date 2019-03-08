@@ -6,7 +6,7 @@ class RatesController < ApplicationController
       if rate
         format.json { render json: rate, status: :ok }
       else
-        format.json { render json: nil, status: :not_found }
+        format.json { render json: nil, status: :service_unavailable }
       end
     end
   end
