@@ -1,5 +1,3 @@
-
-
 env:
   global:
     - CC_TEST_REPORTER_ID=a699ed8aac949323e871304a2bc739dc64643493ec7cb1b6cc4e5b8bf00e0a94
