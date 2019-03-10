@@ -19,10 +19,22 @@ class FetchRateJob < ApplicationJob
     res.body if res.is_a?(Net::HTTPSuccess)
   end
 
-  def extract_rate(resp_body)
-    xml = Nokogiri::XML(resp_body)
+  def extract_rate(xml_str)
+    xml = Nokogiri::XML(xml_str)
     [xml.at_xpath('/ValCurs/Valute[@ID="R01235"]/Value').text.tr(',', '.').to_f,
      xml.at_xpath('/ValCurs')['Date'].to_date]
+  end
+
+  def memorize(value, date)
+    old_rate = Rails.cache.read('usd_rub_rate')
+    if old_rate.nil? || old_rate[:date] < date
+      Rails.cache.write('usd_rub_rate', value: value, date: date)
+    end
+    if date == Date.today
+      { wait_until: Date.tomorrow.beginning_of_day }
+    else
+      { wait: 1.hour }
+    end
   end
 
   def fetch_rate_from_cbr
@@ -31,11 +43,6 @@ class FetchRateJob < ApplicationJob
     data = fetch_data_from(url)
     return { wait: 1.hour } unless data
 
-    rate, date = extract_rate(data)
-
-    return { wait: 1.hour } unless date == Date.today
-
-    Rails.cache.write('usd_rub_rate', value: rate, date: date)
-    { wait_until: Date.tomorrow.beginning_of_day }
+    memorize(*extract_rate(data))
   end
 end

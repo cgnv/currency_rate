@@ -3,9 +3,9 @@
     <div class="col-md-6 mx-auto">
       <div class="card card-body">
         <h1 class="text-center mb-4">
-          Курс USD-RUB на <span id="date"><%= @rate[:date] %></span>
+          Курс USD-RUB на <span id="date"><%= @rate[:date] if @rate %></span>
         </h1>
-        <h2 class="text-center mb-4" id='rate'><%= @rate[:value] %></h2>
+        <h2 class="text-center mb-4" id='rate'><%= @rate[:value] if @rate %></h2>
       </div>
     </div>
   </div>

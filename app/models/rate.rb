@@ -9,6 +9,12 @@ class Rate
                     numericality: { greater_than_or_equal_to: 0 }
   validates :expire_at, presence: true
 
+  def initialize(opts={})
+    super
+    @value = nil if @value.blank?
+    @expire_at = nil if @expire_at.blank?
+  end
+
   def self.current
     rate = admin_rate
     return rate.fake_rate if rate && rate.expire_at > Time.now
