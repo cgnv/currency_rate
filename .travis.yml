@@ -1,12 +1,18 @@
----
+
+
+env:
+  global:
+    - CC_TEST_REPORTER_ID=a699ed8aac949323e871304a2bc739dc64643493ec7cb1b6cc4e5b8bf00e0a94
 language: ruby
 rvm:
   - 2.5.3
-script:
-  - bundle exec rspec
-addons:
-  code_climate:
-    repo_token:
-      secure: "qYYrwL2ELIWnl5l+0fsAnH56XzFZ4Kg/eCWVnERuj2tsBML72YnLJCzTBzoV1yyi9TuINaPuCXsHZupMb92pHZpOWF1jqzbXOhZE52NSdnuuDwDf6KGP7XNZbI2zaQ/KRr72NMXvAUKonVUM0zNN9pCpjLico25VUCT3u5tbVY8GzFxO8AykdJPa8HlGvnKCp3SRJS60odIuDdyTWznx67PvMNpXI2M6PEhkplEvdiuaTctVoMfPZhtCszFQxFV4iIrK5iwdLnUCGI78Dx6/0sNwufp1vO/UnUWQ91Jv65lyifqNG+Bw3HpSKiIqzGr+damqnCjXvn9Azr7UlM2DDlAO8NL2Moi0X/herObRKIcVR+a1BSO4BsxVdb9PDMIEJaiHgL76A+hOeDpkCVgxNvgFSsec0Rvh6GrkWbCot7+uWmpxnNb7ipwFjIbJ9VdUNxup7/yyI+w1fN8bz5FAw5eCYZjmJWsyEjUHduwpQGo1QdhRzLubRQp9odiyGdNUXKKpelkZWR7RkPTeOO7cKzzGnhhdKHLSaw+yPa2aqu5SzVzoMupfNzdJuIJdu5Nx0ku59c2n614nWfBrBBoGmwA6656alhn7uorMm8j3J+NmDB7Cc/5uk/OgycUx5yOlCjxspQUrjYd7PIfE1NPwA4roPnjzhFsUFZGxP0wYuEw="
-after_success:
-  - bundle exec codeclimate-test-reporter
+notifications:
+  - false
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+scripts:
+  - bundle exec rspec spec
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
