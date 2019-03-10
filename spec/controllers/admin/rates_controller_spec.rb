@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Admin::RatesController, type: :controller do
@@ -29,7 +31,7 @@ RSpec.describe Admin::RatesController, type: :controller do
     context 'with valid params' do
       it 'redirects to #index' do
         post :create, params: { rate: { value: '1', expire_at: Time.now.to_s } }
-        expect(response).to redirect_to([:admin, :rates])
+        expect(response).to redirect_to(%i[admin rates])
       end
     end
   end

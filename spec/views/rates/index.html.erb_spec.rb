@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "rates/index.html.erb", type: :view do
+RSpec.describe 'rates/index.html.erb', type: :view do
   it 'display rate' do
     assign(:rate, value: 20.0, date: Date.today)
     render

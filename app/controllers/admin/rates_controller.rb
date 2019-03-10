@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::RatesController < ApplicationController
   def index
     @rate = Rate.admin_rate || Rate.new
@@ -6,7 +8,7 @@ class Admin::RatesController < ApplicationController
   def create
     @rate = Rate.new(rate_params)
     if @rate.save
-      redirect_to [:admin, :rates], success: 'Курс изменен'
+      redirect_to %i[admin rates], success: 'Курс изменен'
     else
       render :index
     end

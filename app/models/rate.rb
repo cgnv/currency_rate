@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Rate
   include ActiveModel::Model
   include Virtus.model
@@ -9,7 +11,7 @@ class Rate
                     numericality: { greater_than_or_equal_to: 0 }
   validates :expire_at, presence: true
 
-  def initialize(opts={})
+  def initialize(opts = {})
     super
     @value = nil if @value.blank?
     @expire_at = nil if @expire_at.blank?
@@ -24,7 +26,7 @@ class Rate
 
   def self.official_rate
     rate = Rails.cache.read('usd_rub_rate')
-    FetchRateJob.perform_later unless rate && rate[:date] == Date.today
+    FetchRateJob.perform_later unless rate
     rate
   end
 

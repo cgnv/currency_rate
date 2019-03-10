@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin::RatesHelper
   def bootstrap_datetime_picker(form, attr, id)
     value = form.object.public_send(attr)&.strftime('%d.%m.%Y %H:%M')

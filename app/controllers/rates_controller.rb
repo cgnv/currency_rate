@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RatesController < ApplicationController
   def index
     @rate = Rate.current || {}
