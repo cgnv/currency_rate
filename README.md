@@ -1,4 +1,7 @@
-# README
+# CurrencyRate
+[![Build Status](https://travis-ci.org/cgnv/nmax.svg?branch=master)](https://travis-ci.org/cgnv/nmax)
+[![Maintainability](https://api.codeclimate.com/v1/badges/777f62bef8eab97e0bb2/maintainability)](https://codeclimate.com/github/cgnv/currency_rate/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/777f62bef8eab97e0bb2/test_coverage)](https://codeclimate.com/github/cgnv/currency_rate/test_coverage)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
