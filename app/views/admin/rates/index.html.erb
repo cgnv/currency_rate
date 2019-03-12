@@ -9,7 +9,7 @@
         <%= render 'shared/model_errors', res: @rate %>
 
         <fieldset>
-          <%= form_for [:admin, @rate] do |f|%>
+          <%= form_for [:admin, @rate], html: { autocomplete: "off" } do |f|%>
             <div class="form-group">
               <%= f.label :value %>
               <%= f.number_field :value, min: 0, step: :any, class: 'form-control' %>
