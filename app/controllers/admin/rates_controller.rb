@@ -7,8 +7,7 @@ class Admin::RatesController < ApplicationController
 
   def create
     @rate = Rate.new(rate_params)
-    @rate.expire_at = ActiveSupport::TimeZone.new(params[:user][:time_zone])
-                                             .local_to_utc(@rate.expire_at)
+    @rate.to_utc!(params[:time_zone])
     if @rate.save
       redirect_to %i[admin rates], success: 'Курс изменен'
     else

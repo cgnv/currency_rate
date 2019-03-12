@@ -20,7 +20,7 @@ RSpec.feature 'Admin::Rate create', type: :system do
     click_button 'Создать Курс'
     expect(page).to have_text('Курс изменен')
     expect(page).to have_css('input[type="number"][value="2.3456"]')
-    expect(page).to have_css("input[type=\"datetime-local\"][value='#{time}']")
+    expect(page).to have_css('input[type="datetime-local"]')
   end
 
   it 'show create rate insted official rate' do

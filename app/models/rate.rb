@@ -42,4 +42,10 @@ class Rate
   def save
     Rails.cache.write('admin_rate', attributes) if valid?
   end
+
+  def to_utc!(timezone)
+    return if @expire_at.blank? || timezone.blank?
+
+    @expire_at = ActiveSupport::TimeZone.new(timezone).local_to_utc(@expire_at)
+  end
 end
