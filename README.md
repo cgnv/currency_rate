@@ -1,5 +1,5 @@
 # CurrencyRate
-[![Build Status](https://travis-ci.org/cgnv/nmax.svg?branch=master)](https://travis-ci.org/cgnv/nmax)
+[![Build Status](https://travis-ci.org/cgnv/currency_rate.svg?branch=master)](https://travis-ci.org/cgnv/currency_rate)
 [![Maintainability](https://api.codeclimate.com/v1/badges/777f62bef8eab97e0bb2/maintainability)](https://codeclimate.com/github/cgnv/currency_rate/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/777f62bef8eab97e0bb2/test_coverage)](https://codeclimate.com/github/cgnv/currency_rate/test_coverage)
 
