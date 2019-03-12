@@ -19,4 +19,6 @@
 //= require moment
 //= require moment/ru
 //= require tempusdominus-bootstrap-4
+//= require detect_timezone
+//= require jquery.detect_timezone
 //= require_tree .

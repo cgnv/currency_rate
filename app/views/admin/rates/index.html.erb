@@ -19,7 +19,9 @@
               <%= f.label :expire_at %>
               <%= bootstrap_datetime_picker(f, :expire_at, 'datetimepicker') %>
             </div>
-
+            <div class="form-group">
+              <%= time_zone_select( "user", "time_zone", nil, {}, { class: 'form-control' }) %>
+            </div>
             <%= f.submit class: 'btn btn-lg btn-primary btn-block' %>
           <% end %>
         </fieldset>
@@ -27,3 +29,9 @@
     </div>
   </div>
 </div>
+<script>
+
+$(document).ready(function(){
+  $('#user_time_zone').set_timezone({format: 'city'});
+});
+</script>
