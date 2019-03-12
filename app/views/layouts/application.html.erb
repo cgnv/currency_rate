@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CurrencyRate</title>
+    <title>CurrencyRate<%= " | #{yield(:title)}" if content_for?(:title) %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= tag :meta, name: :psj, action: action_name, controller: controller_path %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
