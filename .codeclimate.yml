@@ -21,17 +21,6 @@ engines:
         ruby:
           mass_threshold: 30
         javascript:
-
-ratings:
-  paths:
-  - Gemfile.lock
-  - "**.erb"
-  - "**.rb"
-  - "**.css"
-  - "**.coffee"
-  - "**.inc"
-  - "**.js"
-  - "**.module"
 exclude_paths:
 - config/
 - db/

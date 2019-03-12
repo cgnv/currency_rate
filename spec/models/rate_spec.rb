@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Rate, type: :model do
+  before { allow(FetchRateJob).to receive(:perform_later) }
   let(:rate) { Rate.new(value: '1', expire_at: Time.now.to_s) }
 
   it { expect(Rate.new).not_to be_valid }
